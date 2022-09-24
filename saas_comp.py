@@ -13,7 +13,7 @@ def encode_file(file):
 #updating body.json
 def make_json_body(file):
     base64_file = encode_file(file)
-    return {"folderId":"b1gb2477drh0ivbugf0p", "analyze_specs": [{"content":f"{str(base64_file)}", "features":[{"type": "FACE_DETECTION"}]}]}
+    return {"folderId":"b1gb2477drh0ivbugf0p", "analyze_specs": [{"content":str(base64_file)}, "features":[{"type": "FACE_DETECTION"}]}]}
 
 
 with open ('./data/mask.jpg', 'rb') as img:
