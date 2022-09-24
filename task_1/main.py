@@ -1,5 +1,5 @@
 import yandex_request
 
 
-with open('./data/mask.jpg', 'rb') as image:
-   yandex_resoult = yandex_request.request(image)
+yandex_resoult = yandex_request.request('face-detection-sample.jpg')
+print(yandex_resoult[1])

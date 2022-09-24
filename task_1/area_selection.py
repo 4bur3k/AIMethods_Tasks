@@ -1,6 +1,16 @@
 from PIL import Image, ImageDraw
+import os.path
 
-img = Image.open("data/mask.jpg")  
-draw = ImageDraw.Draw(img)
-draw.rectangle([(426, 254),(1153, 982)], outline='red') # Рисуем красную точку по координатам 10x10
-img.show()
+
+#Select an area with arguments and save an image
+#Rake 2 arguments: 
+#verticies - array of arrays of 2 verticies: [[(x, y), (x, y)], ..., [(x, y), (x, y)]],
+#image - image file
+def select_area(vertices, img_path):
+    img = Image.open(f'./data/{img_path}')
+    draw = ImageDraw.Draw(img)
+    for vertice in vertices:
+        draw.rectangle(vertice, outline='red') # Рисуем красную точку по координатам 10x10
+    img.save(f'output/{img_path}')
+    
+    return img
