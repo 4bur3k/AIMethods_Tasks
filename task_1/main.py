@@ -1,4 +1,5 @@
-from request import yandex_request
+import yandex_request
+
 
 with open('./data/mask.jpg', 'rb') as image:
-    yandex_request(image)
+   yandex_resoult = yandex_request.request(image)
