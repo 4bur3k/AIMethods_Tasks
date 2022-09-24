@@ -1,1 +1,0 @@
-{"results": [{"results": [{"faceDetection": {"faces": [{"boundingBox": {"vertices": [{"x": "426", "y": "254"}, {"x": "426", "y": "982"}, {"x": "1153", "y": "982"}, {"x": "1153", "y": "254"}]}}]}}]}]}
