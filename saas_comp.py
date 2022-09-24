@@ -31,5 +31,5 @@ resoult = response.json()
 print(f'Response code:{response}')
 print(resoult)
 
-with open('output.txt', 'w') as res_f:
+with open('output.json', 'w') as res_f:
     detected_faces = json.dump(resoult, res_f)
