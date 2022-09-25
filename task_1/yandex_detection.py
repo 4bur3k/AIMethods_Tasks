@@ -1,7 +1,9 @@
 import base64
 import json
 import requests
-from area_selection import select_area
+from picrure_conv import select_area
+
+
 # Making POST request to Yandex. 
 # Taking 1 argument: image to analys
 # Returns array, contains:

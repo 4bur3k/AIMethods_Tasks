@@ -14,3 +14,11 @@ def select_area(vertices, img_path):
     img.save(f'output_yandex/{img_path}')
     
     return img
+
+# def crop_center(img_path, scale):
+#     img = Image.open(f'data/{img_path}')
+
+#     img_width, img_height = img.size
+#     img_crop = img.crop()
+#     img_crop.save(f'buffer/{img_path}')
+#     return f'buffer/{img_path}'
