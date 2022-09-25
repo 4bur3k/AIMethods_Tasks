@@ -11,6 +11,6 @@ def select_area(vertices, img_path):
     draw = ImageDraw.Draw(img)
     for vertice in vertices:
         draw.rectangle(vertice, outline='red') # Рисуем красную точку по координатам 10x10
-    img.save(f'output/{img_path}')
+    img.save(f'output_yandex/{img_path}')
     
     return img

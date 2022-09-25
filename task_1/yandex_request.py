@@ -1,6 +1,5 @@
 import base64
 import json
-from urllib import request
 import requests
 from area_selection import select_area
 # Making POST request to Yandex. 
@@ -8,7 +7,7 @@ from area_selection import select_area
 # Returns array, contains:
 # image with selected areas
 # count of faces
-def request(image_file_name):
+def ya_request(image_file_name):
 
     image_file = open(f'./data/{image_file_name}', 'rb')
     
@@ -20,7 +19,7 @@ def request(image_file_name):
         API_KEY = key_f.read()
     
     #creating POST request
-    request_data_dict = {"folderId":"b1gb2477drh0ivbugf0p", "analyze_specs": [{"content":image_b64.decode(), "features":[{"type": "FACE_DETECTION"}]}]}
+    request_data_dict = {"folderId":"b1gb2477drh0ivbugf0p", "analyze_specs": [{"content":image_b64.decode(), "features":[{"type": "FACE_DETECTION"}], "mimeType":"image/jpeg"}]}
 
     request_header = {"Authorization": f"Api-Key {API_KEY}"}
 

@@ -1,1 +1,1 @@
-{"results": [{"results": [{"faceDetection": {"faces": [{"boundingBox": {"vertices": [{"x": "641", "y": "153"}, {"x": "641", "y": "480"}, {"x": "969", "y": "480"}, {"x": "969", "y": "153"}]}}, {"boundingBox": {"vertices": [{"x": "1080", "y": "389"}, {"x": "1080", "y": "618"}, {"x": "1309", "y": "618"}, {"x": "1309", "y": "389"}]}}]}}]}]}
+{"results": [{"results": [{"faceDetection": {}}]}]}
