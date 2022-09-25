@@ -1,21 +1,18 @@
 import yandex_detection
 import google_detection
 import streamlit as st
+from PIL import Image
 
 
-for i in range(1,11):
-    yandex_resoult = yandex_detection.detect_faces(f'{i}.jpg')
-    print(f'On {yandex_resoult[0]} detected {yandex_resoult[1]} person')
+#for i in range(1,11):
+    #yandex_resoult = yandex_detection.detect_faces(f'{i}.jpg')
+    #print(f'On {yandex_resoult[0]} detected {yandex_resoult[1]} person')
 
-st.title('Feces recognition')
+st.title('Faces recognition')
 
-st.image('output_yandex/1.jpg', caption='')
-st.image('output_yandex/2.jpg', caption='')
-st.image('output_yandex/3.jpg', caption='')
-st.image('output_yandex/4.jpg', caption='')
-st.image('output_yandex/5.jpg', caption='')
-st.image('output_yandex/6.jpg', caption='')
-st.image('output_yandex/7.jpg', caption='')
-st.image('output_yandex/8.jpg', caption='')
-st.image('output_yandex/9.jpg', caption='')
-st.image('output_yandex/10.jpg', caption='')
+images = list()
+for i in range (1, 11):
+    img = Image.open(f'output_yandex/{i}.jpg')
+    images.append(img)
+
+st.image(images)
