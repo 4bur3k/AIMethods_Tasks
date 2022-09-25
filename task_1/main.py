@@ -3,9 +3,9 @@ import google_detection
 import streamlit as st
 
 
-#for i in range(1,10):
-   # yandex_resoult = yandex_detection.detect_faces(f'{i}.jpg')
-    #print(f'On {yandex_resoult[0]} detected {yandex_resoult[1]} person')
+for i in range(1,11):
+    yandex_resoult = yandex_detection.detect_faces(f'{i}.jpg')
+    print(f'On {yandex_resoult[0]} detected {yandex_resoult[1]} person')
 
 st.title('Feces recognition')
 
