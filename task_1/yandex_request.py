@@ -16,38 +16,45 @@ def request(image_file_name):
     image_b64 = base64.b64encode(image_file.read())
 
     #getting yandex api token from yandex_tkn.txt
-    with open("yandex_tkn.txt", 'r', encoding='utf-8') as token_f:
-        API_KEY = token_f.read()
+    with open("yandex_tkn.txt", 'r', encoding='utf-8') as key_f:
+        API_KEY = key_f.read()
     
     #creating POST request
-    data_dict = {"folderId":"b1gb2477drh0ivbugf0p", "analyze_specs": [{"content":image_b64.decode(), "features":[{"type": "FACE_DETECTION"}]}]}
+    request_data_dict = {"folderId":"b1gb2477drh0ivbugf0p", "analyze_specs": [{"content":image_b64.decode(), "features":[{"type": "FACE_DETECTION"}]}]}
 
-    header = {"Authorization": f"Api-Key {API_KEY}"}
+    request_header = {"Authorization": f"Api-Key {API_KEY}"}
 
     #doing request
-    response = requests.post("https://vision.api.cloud.yandex.net/vision/v1/batchAnalyze", json=data_dict, headers=header)
-    print(f'Response code:{response}')
+    response = requests.post("https://vision.api.cloud.yandex.net/vision/v1/batchAnalyze", json=request_data_dict, headers=request_header)
+    print(response)
     responce_data = response.json()
     
     #writing resoult of the request down
     with open('output.json', 'w') as res_f:
         json.dump(response.json(), res_f)
 
-    #choose left bottom and right top vertices
-    detected_faces_vertices = responce_data['results'][0]['results'][0]['faceDetection']['faces'][0]['boundingBox']['vertices']
-    vertices_array = list()
-    for vertice in detected_faces_vertices[::2]:
-        vertices_array.append((int(vertice['x']), int(vertice['y'])))
+    #if no faces detected return original image and 0
+    if(responce_data['results'][0]['results'][0]['faceDetection'] == {}):
+        resoult_image = select_area([], image_file_name)
+        return [resoult_image, 0] 
 
+    responce_data = responce_data['results'][0]['results'][0]['faceDetection']['faces']
+
+    faces_count = len(responce_data)
+
+    #parsing data from json and choosing left bottom and right top vertices
+    detected_faces_vertices_array = list()
+    for face in responce_data:
+        for vertice in face['boundingBox']['vertices'][::2]:
+            detected_faces_vertices_array.append((int(vertice['x']), int(vertice['y'])))
+
+    #separate array of vertices into [faces_count] arrays contains 2 vertices
     chunked_list = list()
-    for i in range(0, len(vertices_array), 2):
-        chunked_list.append(vertices_array[i:i+2])
-    vertices_array = chunked_list
-    print(vertices_array)
-
-    faces_count = len(vertices_array)
-    print(vertices_array)
+    for i in range(0, len(detected_faces_vertices_array), 2):
+        chunked_list.append(detected_faces_vertices_array[i:i+2])
+    detected_faces_vertices_array = chunked_list
+    print(detected_faces_vertices_array)
     
-    resoult_image = select_area(vertices_array, image_file_name)
+    resoult_image = select_area(detected_faces_vertices_array, image_file_name)
 
     return [resoult_image, faces_count]
