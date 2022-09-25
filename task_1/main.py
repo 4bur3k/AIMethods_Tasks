@@ -1,4 +1,7 @@
-import yandex_request
+import yandex_detection
+import google_detection
 
-yandex_resoult = yandex_request.ya_request('me_1.jpg')
-print(yandex_resoult[1])
+#yandex_resoult = yandex_detection.detect_faces('me_1.jpg')
+#print(yandex_resoult[1])
+
+google_detection.detect_faces('brigade.jpg')
