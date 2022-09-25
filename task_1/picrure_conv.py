@@ -10,7 +10,7 @@ def select_area(vertices, img_path):
     img = Image.open(f'./data/{img_path}')
     draw = ImageDraw.Draw(img)
     for vertice in vertices:
-        draw.rectangle(vertice, outline='red', width=10)
+        draw.rectangle(vertice, outline='red', width=5)
     img.save(f'output_yandex/{img_path}')
     
     return img
