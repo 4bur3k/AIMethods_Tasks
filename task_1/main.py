@@ -16,7 +16,7 @@ with st.sidebar:
     choise = st.selectbox(
                 'Choose picture to detect', 
                 ('me', 'brigade', 'day_of_death', 'film', 'meme',  
-                'man_in_facemask', 'people_in_facemasks', 'man', 'people', 'people_scaceld', 'students'))
+                'man_in_facemask', 'people_in_facemasks', 'man', 'people', 'people2', 'people_scaceld', 'students'))
 
 
     #select scale number
@@ -45,6 +45,6 @@ if picture:
     img.save('data/live.jpg')
     choise = 'live'
 else:
-    st.image(f'output_yandex/{choise}.jpg', caption=f'Distorted picture. {persons_count_distorted} persons detected in this picture' ,width=ST_PICS_WIDTH)
-    st.image(f'distorted/{choise}.jpg', caption=f'Original picture.{persons_count_original} persons detected in this picture' ,width=ST_PICS_WIDTH)
+    st.image(f'output_yandex/{choise}.jpg', caption=f'Original picture. {persons_count_original} persons detected in this picture' ,width=ST_PICS_WIDTH)
+    st.image(f'distorted/{choise}.jpg', caption=f'Distorted picture.{persons_count_distorted} persons detected in this picture' ,width=ST_PICS_WIDTH)
 
