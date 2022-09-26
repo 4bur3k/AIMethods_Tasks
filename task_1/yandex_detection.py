@@ -1,7 +1,7 @@
 import base64
 import json
 import requests
-from picrure_conv import select_area
+from picrure_conv import select_area, image_distortion
 
 
 # Making POST request to Yandex. 
@@ -9,9 +9,14 @@ from picrure_conv import select_area
 # Returns array, contains:
 # image with selected areas
 # count of faces
-def detect_faces(image_file_name):
+def detect_faces(image_file_name, new_quality):
 
-    image_file = open(f'./data/{image_file_name}', 'rb')
+    image_distortion(image_file_name, new_quality)
+
+    if new_quality == 100:
+        image_file = open(f'./data/{image_file_name}', 'rb')
+    else:
+        image_file = open(f'./distorted/{image_file_name}', 'rb')
     
     #encoding to base64 format
     image_b64 = base64.b64encode(image_file.read())
@@ -36,7 +41,11 @@ def detect_faces(image_file_name):
 
     #if no faces detected return original image and 0
     if(responce_data['results'][0]['results'][0]['faceDetection'] == {}):
-        resoult_image = select_area([], image_file_name)
+        if new_quality == 100:
+            resoult_image = select_area([], image_file_name, was_destorted=False)
+        else:
+            resoult_image = select_area([], image_file_name, was_destorted=True)
+
         return [resoult_image, 0] 
 
     responce_data = responce_data['results'][0]['results'][0]['faceDetection']['faces']
@@ -56,6 +65,9 @@ def detect_faces(image_file_name):
     detected_faces_vertices_array = chunked_list
     print(detected_faces_vertices_array)
     
-    resoult_image = select_area(detected_faces_vertices_array, image_file_name)
+    if new_quality == 100:
+        resoult_image = select_area(detected_faces_vertices_array, image_file_name, was_destorted=False)
+    else:
+        resoult_image = select_area(detected_faces_vertices_array, image_file_name, was_destorted=True)
 
     return [resoult_image, faces_count]
