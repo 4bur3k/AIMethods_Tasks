@@ -20,7 +20,7 @@ with st.sidebar:
 
 
     #select scale number
-    image_quality = st.slider("Image quality")
+    image_quality = st.slider("Image quality", max_value=99)
     
 
     #uploading tools           
