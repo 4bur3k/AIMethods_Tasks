@@ -16,7 +16,7 @@ with st.sidebar:
     choise = st.selectbox(
                 'Choose picture to detect', 
                 ('me', 'brigade', 'day_of_death', 'film', 'meme',  
-                'main_in_facemask', 'people_in_facemasks', 'man', 'people', 'people_scaceld', 'students'))
+                'man_in_facemask', 'people_in_facemasks', 'man', 'people', 'people_scaceld', 'students'))
 
 
     #select scale number
