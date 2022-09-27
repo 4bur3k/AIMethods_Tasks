@@ -5,7 +5,9 @@ from picrure_conv import select_area, image_distortion
 
 
 # Making POST request to Yandex. 
-# Taking 1 argument: image to analys
+# Taking 2 argument: 
+# image to analys
+# new quality of image
 # Returns array, contains:
 # image with selected areas
 # count of faces
@@ -63,7 +65,7 @@ def detect_faces(image_filename, new_quality):
     detected_faces_vertices_array = chunked_list
     print(detected_faces_vertices_array)
     
-    resoult_image = select_area(detected_faces_vertices_array, image_file_name, service_name='yandex')
+    resoult_image = select_area(detected_faces_vertices_array, image_filename, service_name='yandex')
    
 
     return [resoult_image, faces_count]
