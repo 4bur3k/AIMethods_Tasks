@@ -38,14 +38,13 @@ def detect_faces(image_filename, new_quality):
     with open('../output.json', 'w') as res_f:
         json.dump(response.json(), res_f)
 
+
     #if no faces detected return original image and 0
     if(responce_data['results'][0]['results'][0]['faceDetection'] == {}):
-        if new_quality == 100:
-            resoult_image = select_area([], image_file_name, 'yandex')
-        else:
-            resoult_image = select_area([], image_file_name, 'yandex')
-
+        resoult_image = select_area([], image_filename, 'yandex')
+        
         return [resoult_image, 0] 
+
 
     responce_data = responce_data['results'][0]['results'][0]['faceDetection']['faces']
 
