@@ -1,4 +1,3 @@
-from random import choices
 import yandex_detection
 import google_detection
 import streamlit as st

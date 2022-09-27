@@ -23,11 +23,3 @@ def image_distortion(img_path, quality):
     img = Image.open(f'../data/{img_path}')
     print(quality)
     img.save(f'../distorted/{img_path}', quality=quality)
-
-# def crop_center(img_path, scale):
-#     img = Image.open(f'data/{img_path}')
-
-#     img_width, img_height = img.size
-#     img_crop = img.crop()
-#     img_crop.save(f'buffer/{img_path}')
-#     return f'buffer/{img_path}'
