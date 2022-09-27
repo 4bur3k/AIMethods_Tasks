@@ -9,11 +9,11 @@ from picrure_conv import select_area, image_distortion
 # Returns array, contains:
 # image with selected areas
 # count of faces
-def detect_faces(image_file_name, new_quality):
+def detect_faces(image_filename, new_quality):
 
-    image_distortion(image_file_name, new_quality, 'yandex')
+    image_distortion(image_filename, new_quality, 'yandex')
 
-    image_file = open(f'../output_yandex/{image_file_name}', 'rb')
+    image_file = open(f'../output_yandex/{image_filename}', 'rb')
     
     #encoding to base64 format
     image_b64 = base64.b64encode(image_file.read())

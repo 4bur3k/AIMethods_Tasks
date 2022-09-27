@@ -41,6 +41,7 @@ if picture:
     chosen_picture = 'live'
 
 
+#Yandex_detecting block[Start]
 #detecting faces on original image
 print(f"yandex detection executing  \"{chosen_picture}\"")
 yandex_resoult = yandex_detection.detect_faces(f'{chosen_picture}.jpg', 100)
@@ -54,6 +55,7 @@ yandex_resoult = yandex_detection.detect_faces(f'{chosen_picture}.jpg', image_qu
 persons_count = yandex_resoult[1]
 
 st.image(f'../output_yandex/{chosen_picture}.jpg', caption=f'Distorted picture.{persons_count} persons detected in this picture' ,width=ST_PICS_WIDTH)
+#Yandex detecting block [END]
 
 
 print(f"images showing  \"{chosen_picture}\"\n " +
