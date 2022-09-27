@@ -62,6 +62,7 @@ def detect_faces(image_file_name, new_quality):
     chunked_list = list()
     for i in range(0, len(detected_faces_vertices_array), 2):
         chunked_list.append(detected_faces_vertices_array[i:i+2])
+        print('chunked List: ', chunked_list)
     detected_faces_vertices_array = chunked_list
     print(detected_faces_vertices_array)
     

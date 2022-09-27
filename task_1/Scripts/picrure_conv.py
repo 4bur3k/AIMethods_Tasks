@@ -16,7 +16,7 @@ def select_area(vertices, img_path, was_destorted):
 
     if was_destorted: img.save(f'../distorted/{img_path}')
     else: img.save(f'../output_yandex/{img_path}')
-
+    
     return img
 
 def image_distortion(img_path, quality):
