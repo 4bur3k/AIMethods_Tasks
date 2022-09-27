@@ -9,7 +9,7 @@ with open('../faceplus_tkn.txt', 'r') as f:
 with open('../faceplus_secret.txt', 'r') as f:
     API_SECRET = f.read()
 
-image_path = '../data/man.jpg'
+image_path = '../data/me.jpg'
 
 with open(image_path, 'rb') as f:
     image_b64 = base64.b64encode(f.read())
@@ -42,4 +42,4 @@ print('vList: ', verticeList, '\n---')
 for item in verticeList:
     print(item)
 
-resoult_image = select_area(verticeList, 'man.jpg', False)
+resoult_image = select_area(verticeList, 'me.jpg', False)

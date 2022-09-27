@@ -11,12 +11,9 @@ from picrure_conv import select_area, image_distortion
 # count of faces
 def detect_faces(image_file_name, new_quality):
 
-    image_distortion(image_file_name, new_quality)
+    image_distortion(image_file_name, new_quality, 'yandex')
 
-    if new_quality == 100:
-        image_file = open(f'../data/{image_file_name}', 'rb')
-    else:
-        image_file = open(f'../distorted/{image_file_name}', 'rb')
+    image_file = open(f'../output_yandex/{image_file_name}', 'rb')
     
     #encoding to base64 format
     image_b64 = base64.b64encode(image_file.read())
@@ -42,9 +39,9 @@ def detect_faces(image_file_name, new_quality):
     #if no faces detected return original image and 0
     if(responce_data['results'][0]['results'][0]['faceDetection'] == {}):
         if new_quality == 100:
-            resoult_image = select_area([], image_file_name, was_destorted=False)
+            resoult_image = select_area([], image_file_name, 'yandex')
         else:
-            resoult_image = select_area([], image_file_name, was_destorted=True)
+            resoult_image = select_area([], image_file_name, 'yandex')
 
         return [resoult_image, 0] 
 
@@ -66,9 +63,7 @@ def detect_faces(image_file_name, new_quality):
     detected_faces_vertices_array = chunked_list
     print(detected_faces_vertices_array)
     
-    if new_quality == 100:
-        resoult_image = select_area(detected_faces_vertices_array, image_file_name, was_destorted=False)
-    else:
-        resoult_image = select_area(detected_faces_vertices_array, image_file_name, was_destorted=True)
+    resoult_image = select_area(detected_faces_vertices_array, image_file_name, service_name='yandex')
+   
 
     return [resoult_image, faces_count]

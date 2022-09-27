@@ -3,23 +3,23 @@ import os.path
 
 
 #Select an area with arguments and save an image
-#Rake 2 arguments: 
+#Take 2 arguments: 
 #verticies - array of arrays of 2 verticies: [[(x, y), (x, y)], ..., [(x, y), (x, y)]],
-#image - image file
-def select_area(vertices, img_path, was_destorted):
-    if was_destorted: img = Image.open(f'../distorted/{img_path}')
-    else:   img = Image.open(f'../data/{img_path}')
+#image_name - image file name
+#service_name - name of service(yandex, google, faceplus)
+def select_area(vertices, img_name, service_name):
+    img = Image.open(f'../output_{service_name}/{img_name}')
 
     draw = ImageDraw.Draw(img)
+
     for vertice in vertices:
         draw.rectangle(vertice, outline='red', width=5)
 
-    if was_destorted: img.save(f'../distorted/{img_path}')
-    else: img.save(f'../output_yandex/{img_path}')
+    img.save(f'../output_{service_name}/{img_name}')
     
     return img
 
-def image_distortion(img_path, quality):
-    img = Image.open(f'../data/{img_path}')
+def image_distortion(img_name, quality, service_name):
+    img = Image.open(f'../data/{img_name}')
     print(quality)
-    img.save(f'../distorted/{img_path}', quality=quality)
+    img.save(f'../output_{service_name}/{img_name}', quality=quality)
