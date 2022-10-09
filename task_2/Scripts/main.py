@@ -1,4 +1,5 @@
 from json import load
+from mimetypes import init
 import numpy as np
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
@@ -30,28 +31,29 @@ def generate(
   return list(map(tok.decode, out))
 
 
-model, tok = load_tokenizer_and_model("sberbank-ai/rugpt3small_based_on_gpt2")
+tok, model = load_tokenizer_and_model("sberbank-ai/rugpt3small_based_on_gpt2")
 
-output_string = "Here you will see generated text"
 
 def init_model(model_name):
   if model_name == 'Small':
-    model, tok = load_tokenizer_and_model("sberbank-ai/rugpt3small_based_on_gpt2")
+    tok, model = load_tokenizer_and_model("sberbank-ai/rugpt3small_based_on_gpt2")
   else :
-    model, tok = load_tokenizer_and_model("sberbank-ai/rugpt2large")
+    tok, model = load_tokenizer_and_model("sberbank-ai/rugpt3medium_based_on_gpt2")
   
-
+  return [tok, model]
 
 
 def generate_button_cklick():
-    print('Genrating... ', model, max_words)
-    generated = generate(model, tok, "Аннотация к теме \"Комбинаторное описание обобщенных чисел Гурвица\"", num_beams=10)
-    output_string = generated[0]
+    print('Genrating... ', model_name, max_words)
+    generated = generate(model, tok, text, num_beams=max_words)
+    return generated[0]
+    
 
 
 
 import streamlit as st
 
+output_string = ''
 
 st.title('ruGPT-3 generator')
 
@@ -60,9 +62,13 @@ col1, col2 = st.columns([2, 3])
 with col1:
     st.subheader('Params')
     text = st.text_input('Print any phrase')
-    model_name = st.radio('Choose the model', ('Small', 'Medium'), on_change=init_model)
+    model_name = st.radio('Choose the model', ('Small', 'Medium'))
+
+    tok, model = init_model(model_name)
+
     max_words  = st.slider('Max words number', min_value= 10, max_value= 120, value=40)
-    st.button('Generate', on_click=generate_button_cklick)
+    if st.button('Generate'):
+      output_string = generate_button_cklick()
 
     
  
