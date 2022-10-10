@@ -157,7 +157,7 @@ return [resoult_image, faces_count]
 Список источников:
 * Streamlit documentation - https://docs.streamlit.io/
 * Yandex vision - https://cloud.yandex.ru/docs/vision/?from=int-console-empty-state
-* 
+
 
 ---
 
@@ -174,5 +174,62 @@ ruGPT-3.
 ## Запуск
 
 ## Технологии:
-* Python + Streamlit
-* 
+* Python 
+* Torch
+* NVIDIA CUDA
+* Streamlit
+
+
+
+## Сравнительный анализ ruGPT-3 Small и Medium
+
+Поскольку ресрсов для запуска ruGPT-3 Large не хватило, я решил сравнивать Small и Medium версии.
+
+#### Продолжение односложного предложения
+
+Первым тестом будет предлодение "Привет". Количество слов - 40.
+
+<image src="https://i.imgur.com/FX7wcwf.png" alt="Small, 40 слов" width=700>
+
+<image src="https://i.imgur.com/SIgFI1a.png" alt="Medium, 40 слов" width=700>
+
+#### Вопрос
+
+<image src="https://i.imgur.com/IVq7XEs.png" alt="Small, 40 слов" width=700>
+
+<image src="https://i.imgur.com/8Ewskcv.png" alt="Medium, 40 слов" width=700>
+
+Как и в предыдущем случае, он воспринимает фразу как прямую речь и продолжает повествованием от 3-го лица, 
+хотя отсутствие точки явно говорит, что я хотел бы продолжить предложение. 
+
+#### Аннотация к КНИР
+
+<image src="https://i.imgur.com/9nrOqR3.png" alt="Small, 40 слов" width=700>
+
+<image src="https://i.imgur.com/2UL4Ut3.png" alt="Medium, 40 слов" width=700>
+
+#### Продолжение известных произведений
+
+<image src="https://i.imgur.com/55fqUMN.png" alt="Small, 40 слов" width=700>
+
+<image src="https://i.imgur.com/1Q3LW8N.png" alt="Medium, 40 слов" width=700>
+
+#### Продолжение сложных пердложений
+
+<image src="https://i.imgur.com/7LEOfod.png" alt="Small, 40 слов" width=700>
+
+В данном эксперементе младшая модель сработала плохо и результатом выдала 2 не свзянных по смыслу куска текста, но опять не ошиблась в конструкции, 
+
+<image src="https://i.imgur.com/Du40Hcs.png" alt="Medium, 40 слов" width=700>
+
+Старшая модель составила более осмысоенное предложение, дополнив фразу прямой речью.
+
+#### Анекдот
+
+<image src="https://i.imgur.com/RQGKz9E.png" alt="Small, 20 слов" width=700>
+
+<image src="https://i.imgur.com/k085hbO.png" alt="Medium, 20 слов" width=700>
+
+Дадим ruGPT-3 Large второй шанс, увеличив количество слова на 5
+
+<image src="https://i.imgur.com/nMzsRbv.png" alt="Medium, 25 слов" width=700>

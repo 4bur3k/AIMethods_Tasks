@@ -45,7 +45,7 @@ def init_model(model_name):
 
 def generate_button_cklick():
     print('Genrating... ', model_name, max_words)
-    generated = generate(model, tok, text, num_beams=max_words)
+    generated = generate(model, tok, text, max_length=max_words)
     return generated[0]
     
 
